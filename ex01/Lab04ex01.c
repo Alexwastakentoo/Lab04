@@ -51,18 +51,17 @@ int main(int argc, char** argv) {
     while(fgets(linebufferW, MAX_WORD_SIZE, listFile) != NULL){
 
         strcpy(keyword[i].word, linebufferW);
-
-        wordsStored++;
+        keyword[i].occurrences = 0;
+        printf("keyword[%d].occurrences: %d keyword[%d].word: %s  ", i, keyword[i].occurrences, i, keyword[i].word);
+        fflush(stdout);
         i++;
     }
 
-    for(int j = 0; j < wordsStored; j++){
-        keyword[j].occurrences = 0;
-    }
 
     fprintf(stdout,"\n");
     for(int j = 0; j < wordsStored; j++){
         fprintf(stdout,"list[%d]: %s at address %p\n",j , keyword[j].word, &keyword[j]);
+        fflush(stdout);
     }
 
     fclose(listFile);
